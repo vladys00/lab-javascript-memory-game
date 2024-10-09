@@ -60,20 +60,19 @@ window.addEventListener('load', (event) => {
       const card1 = memoryGame.pickedCards[0].getAttribute("data-card-name");
       const card2 = memoryGame.pickedCards[1].getAttribute("data-card-name");
       if (memoryGame.checkIfPair(card1,card2)){
-        document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
-        document.getElementById("pairs-guessed").innerHTML = memoryGame.pairsGuessed;
+        
         memoryGame.pickedCards = [];
       } else {
-        document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
         setTimeout(()=>{
-          memoryGame.pickedCards[0].classList.remove("turned");
-          memoryGame.pickedCards[1].classList.remove("turned");
+          memoryGame.pickedCards.forEach(card => card.classList.remove("turned"));
           memoryGame.pickedCards = [];
-
+          
         },1000)
       }
-
+      
     }
+    document.getElementById("pairs-clicked").innerHTML = memoryGame.pairsClicked;
+    document.getElementById("pairs-guessed").innerHTML = memoryGame.pairsGuessed;
    
     if (memoryGame.checkIfFinished()){
       console.log("you won!!!")
